@@ -1,38 +1,119 @@
-.App {
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4; /* Light background for the content area */
+  color: #333; /* Dark text color for good contrast */
+}
+
+/* Navbar/Header styling */
+header {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+header ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+header li {
+  display: inline;
+  margin: 0 10px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  padding: 0 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+header a:hover {
+  background-color: blue;
+}
+
+/* HomePage and other pages styling */
+.PageContent {
+  padding: 2rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Employee List styling */
+.EmployeeList {
+  margin: auto;
+  width: 50%;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.EmployeeList table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.EmployeeList table thead {
+  background-color: #333;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Form styling */
+form {
+  margin: auto;
+  width: 50%;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+form input, form button {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Button styling */
+button, .button {
+  background-color: #555;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px 5px;
+  cursor: pointer;
+}
+
+button:hover, .button:hover {
+  background-color: #666;
+}
+
+/* Footer styling */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
 }

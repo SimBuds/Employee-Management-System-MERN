@@ -1,18 +1,21 @@
-# Use an official Node runtime as a parent image
+# Step 1: Use an official Node image as a parent image
 FROM node:14
 
-# Set the working directory
+# Step 2: Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json
+# Step 3: Copy package.json and package-lock.json
+# This allows Docker to cache installed dependencies between builds
 COPY package*.json ./
 
-# Install dependencies
+# Step 4: Install dependencies
 RUN npm install
 
-# Bundle app source
+# Step 5: Copy the rest of your app's source code
 COPY . .
 
-# Expose port and run the app
-EXPOSE 5000
-CMD ["npm", "start"]
+# Step 6: Your app binds to port 3000, so use the EXPOSE instruction to have it mapped by the docker daemon
+EXPOSE 3000
+
+# Step 7: Define the command to run your app using CMD
+CMD [ "node", "server.js" ]

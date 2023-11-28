@@ -21,10 +21,10 @@ app.get('/', (req, res) => {
 
 // Setup Routes
 app.use('/api/user/', userRoutes);
-app.use('/api/emp/employees', employeeRoutes);
+app.use('/api/employees', employeeRoutes);
 
 // Start the server
-const port = 3000;
+const port = 5000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

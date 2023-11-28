@@ -1,18 +1,27 @@
-# Use an official Node runtime as a parent image
-FROM node:14
+# Step 1: Use an official Node image as a parent image
+FROM node:latest as build
 
-# Set the working directory
-WORKDIR /usr/src/app
+# Step 2: Set the working directory inside the container
+WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Step 3: Copy the package.json files and install dependencies
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
 
-# Bundle app source
+# Step 4: Copy the rest of your app's source code
 COPY . .
 
-# Expose port and run the app
-EXPOSE 5000
-CMD ["npm", "start"]
+# Step 5: Build your app
+RUN npm run build
+
+# Step 6: Use Nginx to serve the app
+FROM nginx:alpine
+
+# Step 7: Copy the build output to replace the default nginx contents.
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Step 8: Expose port 80 to the outside once the container has launched
+EXPOSE 80
+
+# Step 9: Define the command to run your app
+CMD ["nginx", "-g", "daemon off;"]
