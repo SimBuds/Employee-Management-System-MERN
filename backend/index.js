@@ -14,6 +14,11 @@ mongoose.connect('mongodb://localhost:27017/AssignmentOneDB');
 // Middleware to parse the request body
 app.use(bodyParser.json());
 
+// Default route
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
+
 // Setup Routes
 app.use('/api/user/', userRoutes);
 app.use('/api/emp/employees', employeeRoutes);
