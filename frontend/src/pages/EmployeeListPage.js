@@ -1,40 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function EmployeeList() {
+const EmployeeListPage = () => {
     const [employees, setEmployees] = useState([]);
+    const [error, setError] = useState('');
 
     useEffect(() => {
-        axios.get('/api/employees')
-            .then(response => {
+        const fetchEmployees = async () => {
+            try {
+                const response = await axios.get('/api/employees');
                 setEmployees(response.data);
-            })
-            .catch(error => console.error('Error fetching data: ', error));
+            } catch (error) {
+                setError('Failed to fetch employees.');
+            }
+        };
+
+        fetchEmployees();
     }, []);
 
     return (
-        <div className="EmployeeList">
+        <div className="employee-list-page">
             <h2>Employee List</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {employees.map(employee => (
-                        <tr key={employee._id}> {/* Assuming each employee has a unique _id */}
-                            <td>{employee.firstName}</td>
-                            <td>{employee.lastName}</td>
-                            <td>{employee.email}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            {error && <p className="error">{error}</p>}
+            <ul>
+                {employees.map(employee => (
+                    <li key={employee.id}>{employee.name} - {employee.position}</li>
+                ))}
+            </ul>
         </div>
     );
-}
+};
 
-export default EmployeeList;
+export default EmployeeListPage;

@@ -1,25 +1,29 @@
-// src/pages/SignupPage.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-function SignupPage() {
+const SignupPage = () => {
     const [user, setUser] = useState({ username: '', password: '' });
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        axios.post('/api/signup', user) // Update with your API endpoint
-            .then(response => {
-                // Handle signup success
-            })
-            .catch(error => {
-                // Handle signup errors
-            });
+        setError('');
+
+        try {
+            const response = await axios.post('/api/signup', user);
+            navigate('/login'); // Redirect to login after signup
+        } catch (error) {
+            // Handle errors (show message to user)
+            setError('Signup failed. Please try again.');
+        }
     };
 
     return (
-        <div className="PageContent">
+        <div className="form">
             <h2>Signup</h2>
+            {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
                 <label>
                     Username:
@@ -41,6 +45,6 @@ function SignupPage() {
             </form>
         </div>
     );
-}
+};
 
 export default SignupPage;

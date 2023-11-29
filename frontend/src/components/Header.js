@@ -1,18 +1,19 @@
 import React from 'react';
+import { useAuth } from '../contexts/AuthContext'; // Import useAuth
 
-function Header() {
-  return (
-    <header>
-        <nav className="header">
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/signup">Signup</a></li>
-                <li><a href="/employeeList">Employee List</a></li>
-            </ul>
-        </nav>
-    </header>
-  );
-}
+const Header = () => {
+    const { isLoggedIn, logout } = useAuth(); // Use the useAuth hook
+
+    return (
+        <header>
+            <h1>My Company</h1>
+            <nav>
+                {!isLoggedIn && <a href="/login">Login</a>}
+                {!isLoggedIn && <a href="/signup">Signup</a>}
+                {isLoggedIn && <button onClick={logout}>Logout</button>}
+            </nav>
+        </header>
+    );
+};
 
 export default Header;
