@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-const LoginPage = () => {
+const LoginForm = () => {
     const [user, setUser] = useState({ username: '', password: '' });
     const [error, setError] = useState('');
     const { login } = useAuth();
@@ -14,35 +14,39 @@ const LoginPage = () => {
         setError('');
 
         try {
-            const response = await axios.post('/api/login', user);
-            response.data && 
+            await axios.post('http://localhost:5000/api/user/login', user);
             login(); // Update auth state
             navigate('/employees'); // Redirect after login
         } catch (error) {
-            // Handle errors (show message to user)
-            setError('Login failed. Please check your credentials.');
+            if (error.response && error.response.data) {
+                // Display server-provided error message
+                setError(error.response.data.message);
+            } else {
+                // Generic error message for other types of errors
+                setError('Login failed. Please try again.');
+            }
         }
     };
 
     return (
-        <div className="form">
+        <div className="Form">
             <h2>Login</h2>
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
-                <label>
-                    Username:
+                <label> Username:
                     <input
                         type="text"
                         value={user.username}
                         onChange={(e) => setUser({ ...user, username: e.target.value })}
+                        maxLength="100"
                     />
                 </label>
-                <label>
-                    Password:
+                <label> Password:
                     <input
                         type="password"
                         value={user.password}
                         onChange={(e) => setUser({ ...user, password: e.target.value })}
+                        maxLength="100"
                     />
                 </label>
                 <button type="submit">Login</button>
@@ -51,4 +55,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default LoginForm;

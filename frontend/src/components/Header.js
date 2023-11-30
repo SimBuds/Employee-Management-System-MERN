@@ -6,10 +6,11 @@ const Header = () => {
 
     return (
         <header>
-            <h1>My Company</h1>
             <nav>
+                <a href="/">Home</a>
                 {!isLoggedIn && <a href="/login">Login</a>}
                 {!isLoggedIn && <a href="/signup">Signup</a>}
+                {isLoggedIn && <a href="/employees">Employees</a>}
                 {isLoggedIn && <button onClick={logout}>Logout</button>}
             </nav>
         </header>

@@ -12,33 +12,38 @@ const SignupPage = () => {
         setError('');
 
         try {
-            const response = await axios.post('/api/signup', user);
+            await axios.post('http://localhost:5000/api/user/register', user);
             navigate('/login'); // Redirect to login after signup
         } catch (error) {
-            // Handle errors (show message to user)
-            setError('Signup failed. Please try again.');
+            if (error.response && error.response.data) {
+                // Display server-provided error message
+                setError(error.response.data.message);
+            } else {
+                // Generic error message for other types of errors
+                setError('Signup failed. Please try again.');
+            }
         }
     };
 
     return (
-        <div className="form">
+        <div className="Form">
             <h2>Signup</h2>
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
-                <label>
-                    Username:
+                <label> Username:
                     <input
                         type="text"
                         value={user.username}
                         onChange={(e) => setUser({ ...user, username: e.target.value })}
+                        maxLength="100"
                     />
                 </label>
-                <label>
-                    Password:
+                <label> Password:
                     <input
                         type="password"
                         value={user.password}
                         onChange={(e) => setUser({ ...user, password: e.target.value })}
+                        maxLength="100"
                     />
                 </label>
                 <button type="submit">Signup</button>

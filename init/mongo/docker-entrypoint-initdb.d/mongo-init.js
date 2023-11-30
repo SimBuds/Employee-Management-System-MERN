@@ -5,7 +5,7 @@ db = db.getSiblingDB('mongodb-fullstack');
 db.createUser({
     user: 'admin',
     pwd: 'password',
-    roles: [{ role: 'readWrite', db: 'fullstack-database'}],
+    roles: [{ role: 'readWrite', db: 'mongodb-fullstack'}],
 });
 
 db.createCollection('users');
