@@ -1,9 +1,10 @@
 /* Navbar/Header styling */
 header {
   background-color: #333;
-  color: white;
+  color: #fff;
   text-align: center;
   padding: 1rem 0;
+  box-shadow: 0 2px 2px #444;
 }
 
 header ul {
@@ -19,7 +20,7 @@ header li {
 }
 
 header a {
-  color: white;
+  color: #02b3e4;
   text-decoration: none;
   padding: 0 15px;
   font-size: 1.2rem;
@@ -27,7 +28,8 @@ header a {
 }
 
 header a:hover {
-  background-color: blue;
+  background-color: #02b3e4;
+  color: white;
 }
 
 /* HomePage and General styling */
@@ -39,8 +41,8 @@ header a:hover {
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: #222;
+  color: #fff;
 }
 
 /* Employee List styling */
@@ -48,9 +50,9 @@ body {
   margin: auto;
   max-width: 90%;
   padding: 1rem;
-  border: 1px solid #ddd;
   border-radius: 5px;
-  background-color: white;
+  background-color: #333;
+  box-shadow: 0 2px 5px #444;
 }
 
 .EmployeeList table {
@@ -59,7 +61,7 @@ body {
 }
 
 .EmployeeList table thead {
-  background-color: #333;
+  background-color: #02b3e4;
   color: white;
 }
 
@@ -68,10 +70,8 @@ body {
   margin: auto;
   max-width: 60%;
   padding: 1rem;
-  border: 1px solid #ddd;
   border-radius: 5px;
-  background-color: white;
-
+  background-color: #333;
   /* Centering the form */
   display: flex;
   flex-direction: column;
@@ -84,17 +84,20 @@ body {
   width: 100%;
 }
 
-.Form input, .Form button {
+.Form input,
+.Form button {
   width: 80%;
   padding: 0.5rem;
   margin-bottom: 1rem;
   margin-left: auto;
   margin-right: auto;
+  border: 1px solid #444;
 }
 
 /* Button styling */
-button, .button {
-  background-color: #555;
+button,
+.button {
+  background-color: #02b3e4;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -105,19 +108,18 @@ button, .button {
   cursor: pointer;
 }
 
-button:hover, .button:hover {
-  background-color: #666;
+button:hover,
+.button:hover {
+  background-color: #029dbe;
 }
 
 /* Footer styling */
 footer {
   background-color: #333;
-  color: white;
+  color: #fff; /* White text color */
   text-align: center;
   padding: 1rem 0;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  box-shadow: 0 -2px 2px #444;
 }
 
 footer p {
