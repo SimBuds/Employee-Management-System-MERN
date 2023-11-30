@@ -1,8 +1,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4; /* Light background for the content area */
-  color: #333; /* Dark text color for good contrast */
+  background-color: #f4f4f4;
+  color: #333;
 }
 
 /* Navbar/Header styling */
@@ -17,11 +17,11 @@ header ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
 }
 
 header li {
-  display: inline;
   margin: 0 10px;
 }
 
@@ -46,7 +46,7 @@ header a:hover {
 /* Employee List styling */
 .EmployeeList {
   margin: auto;
-  width: 50%;
+  max-width: 90%; /* Fluid width */
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -66,22 +66,30 @@ header a:hover {
 /* Form styling */
 .Form {
   margin: auto;
-  width: 50%;
+  max-width: 60%; /* Adjusted for a smaller form */
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: white;
+
+  /* Centering the form */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Form label {
   display: block;
   margin-bottom: 0.5rem;
+  width: 100%; /* Full width within the form */
 }
 
-.Form input, form button {
-  width: 100%;
+.Form input, .Form button {
+  width: 80%; /* Adjusted width of inputs and buttons */
   padding: 0.5rem;
   margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Button styling */

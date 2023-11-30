@@ -36,6 +36,7 @@ const SignupPage = () => {
                         value={user.username}
                         onChange={(e) => setUser({ ...user, username: e.target.value })}
                         maxLength="100"
+                        required
                     />
                 </label>
                 <label> Password:
@@ -44,6 +45,7 @@ const SignupPage = () => {
                         value={user.password}
                         onChange={(e) => setUser({ ...user, password: e.target.value })}
                         maxLength="100"
+                        required
                     />
                 </label>
                 <button type="submit">Signup</button>

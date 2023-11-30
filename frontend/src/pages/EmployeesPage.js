@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import AddEmployeeForm from './AddEmployeeForm';
-import EditEmployeeForm from './EditEmployeeForm';
+import { useNavigate } from 'react-router-dom';
 
 const EmployeesPage = () => {
     const [employees, setEmployees] = useState([]);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
+    // Fetch employees from the backend
     useEffect(() => {
         const fetchEmployees = async () => {
             try {
@@ -21,14 +22,30 @@ const EmployeesPage = () => {
         fetchEmployees();
     }, []);
 
-    const handleEmployeeDeleted = (deletedEmployee) => {
-        setEmployees(employees.filter(emp => emp._id !== deletedEmployee._id));
+    // Navigate to add employee form
+    const navigateToAddEmployee = () => {
+        navigate('/add-employee');
+    };
+
+    // Navigate to edit employee form
+    const navigateToEditEmployee = (employeeId) => {
+        navigate(`/edit-employee/${employeeId}`);
+    };
+
+    // Delete an employee
+    const handleDelete = async (employeeId) => {
+        try {
+            await axios.delete(`http://localhost:5000/api/employees/${employeeId}`);
+            setEmployees(employees.filter(emp => emp._id !== employeeId));
+        } catch (error) {
+            console.error('Error deleting employee:', error);
+        }
     };
 
     return (
         <div className="EmployeeList">
             <h2>Employee List</h2>
-            <button onClick={AddEmployeeForm}>Add New Employee</button>
+            <button onClick={navigateToAddEmployee}>Add New Employee</button>
             {error && <p>{error}</p>}
             {employees.length === 0 && !error && <p>No employees found.</p>}
             {employees.length > 0 && (
@@ -48,15 +65,14 @@ const EmployeesPage = () => {
                                 <td>{employee.lastName}</td>
                                 <td>{employee.email}</td>
                                 <td>
-                                    <button onClick={EditEmployeeForm}>Edit</button>
-                                    <button onClick={handleEmployeeDeleted}>Delete</button>
+                                    <button onClick={() => navigateToEditEmployee(employee._id)}>Edit</button>
+                                    <button onClick={() => handleDelete(employee._id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             )}
-
         </div>
     );
 };
