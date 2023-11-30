@@ -1,10 +1,3 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-}
-
 /* Navbar/Header styling */
 header {
   background-color: #333;
@@ -37,16 +30,23 @@ header a:hover {
   background-color: blue;
 }
 
-/* HomePage and other pages styling */
+/* HomePage and General styling */
 .PageContent {
   padding: 2rem;
   text-align: center;
 }
 
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
 /* Employee List styling */
 .EmployeeList {
   margin: auto;
-  max-width: 90%; /* Fluid width */
+  max-width: 90%;
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -66,7 +66,7 @@ header a:hover {
 /* Form styling */
 .Form {
   margin: auto;
-  max-width: 60%; /* Adjusted for a smaller form */
+  max-width: 60%;
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -81,11 +81,11 @@ header a:hover {
 .Form label {
   display: block;
   margin-bottom: 0.5rem;
-  width: 100%; /* Full width within the form */
+  width: 100%;
 }
 
 .Form input, .Form button {
-  width: 80%; /* Adjusted width of inputs and buttons */
+  width: 80%;
   padding: 0.5rem;
   margin-bottom: 1rem;
   margin-left: auto;

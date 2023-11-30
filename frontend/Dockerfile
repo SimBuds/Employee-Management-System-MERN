@@ -1,27 +1,31 @@
-# Step 1: Use an official Node image as a parent image
-FROM node:latest as build
+# Use an official Node runtime as a parent image
+FROM node:latest as build-stage
 
-# Step 2: Set the working directory inside the container
-WORKDIR /app
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-# Step 3: Copy the package.json files and install dependencies
+# Copy package.json and package-lock.json
 COPY package*.json ./
+
+# Install any needed packages
 RUN npm install
 
-# Step 4: Copy the rest of your app's source code
+# Bundle the app source inside the Docker image
 COPY . .
 
-# Step 5: Build your app
+# Build the application
 RUN npm run build
 
-# Step 6: Use Nginx to serve the app
+# Use a simple server for serving the built application
 FROM nginx:alpine
 
-# Step 7: Copy the build output to replace the default nginx contents.
-COPY --from=build /app/build /usr/share/nginx/html
+# Copy custom Nginx config
+COPY config/default.conf /etc/nginx/conf.d/default.conf
 
-# Step 8: Expose port 80 to the outside once the container has launched
+# Copy the build output to replace the default nginx contents.
+COPY --from=build-stage /usr/src/app/build /usr/share/nginx/html
+
+# Expose port 80 for the container
 EXPOSE 80
 
-# Step 9: Define the command to run your app
 CMD ["nginx", "-g", "daemon off;"]
